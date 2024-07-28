@@ -12,7 +12,13 @@ endobj
 6 0 obj
 <</Length 44>>
 stream
+
+## STREAM:Stream objects are the objects that contain all the instructions 
+## describing what a Pdf page is going to look like. 
+
 BT /F1 24 Tf 175 720 Td (Hello World!)Tj ET
+  # BT = BT means Begin Text
+  # ET means End Text
 endstream
 endobj
 xref

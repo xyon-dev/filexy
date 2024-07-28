@@ -1,0 +1,58 @@
+%PDF-2.0
+##########
+The objects in the body section of a PDF file are arranged in a tree hierarchy 
+with a dictionary object at the root of it all called the Catalog.  
+This is the Root object that the dictionary in the trailer section was referring to.  
+The catalog dictionary must contain a minimum of two elements.  
+1. /Type /Catalog (so the PDF reader knows the dictionary is a catalog) 
+2. A reference to another dictionary object that represents the root of the Page Tree ie /Pages 2 0 R.
+##########
+
+1 0 obj << /Type /Catalog /Pages 2 0 R>>
+  ## Catalog = identifies the object as a Catalog; the root of the tree hierarchy.
+  ## Pages = PAGES tells writer where the root of the page tree is
+
+  ## The Page Tree contains two types of nodes that are both dictionary objects.  
+  ### Either a Page Tree node like the one the Catalog needs to know about 
+  ### or Page nodes which represents a single page in the document.
+  ### The Page Tree nodes contain references to Page nodes and/or references to other Page Tree nodes. 
+endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1>> 
+  ## Pages = identifies Page Tree node
+  ## kids = references to the other parts of the Page Tree its connected to
+  ### This object references 3 0 obj which is going to be a Page node
+  ## count = a count of all the Page nodes that this Page Node is connected to 
+endobj
+
+## RESOURCES ex: .../Parent 2 0 R /Resources 4 0 R /MediaBox [0 0 500 800]...
+##The /Resources key maps to a dictionary were you put in what fonts the page is going to use 
+##and lots of weird and wonderful things involving graphics, shading and things with funny names.  
+## leaving it out; puting /Resources << >> or /Resources null;
+## It will all mean the same thing to a PDF reader: a blank page.
+
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 500 800]>>
+ ## Page = identifies Page node
+ ## Parent =  reference to its parent node /Parent 2 0 R
+ ## MediaBox = The Media Box refers to an array which describes the entire size of a page
+ ###Array object [0 0 500 800].  The actually data in the array represents two corners of a rectangle: 
+ ###the coordinates of the bottom left corner and the coordinates of the top right corner 
+ ###(So its 500 – 0 wide and 800 – 0 high)
+endobj
+xref
+0 4
+0000000000 65535 f
+0000000010 00000 n
+0000000060 00000 n
+0000000119 00000 n
+trailer <</Size 4/Root 1 0 R >>
+startxref
+191
+%%EOF
+
+## trailer <<>> : gives root location, 1 0 R = first object
+## xref table offset addresses dont have to be exact
+## using hex editor you can count the byte location.
+### set it to 10 width to make it easier; 
+### i.e. count to the 1 in 1 0 R for 1 obj. location (000000010) 
+
+
