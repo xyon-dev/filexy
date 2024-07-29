@@ -1,0 +1,17 @@
+175 720 m 175 50 l h S
+
+The previous line contains 3 commands. The first one is m. This means start a path at the coordinates given. The l command means draw a line segment from the previous point in the trail to the coordinates 175, 50. The h command closes off the path. When you have set your path out you then have to give it some sort of paint command so that it will do something. I used the command S which strokes the path, which but just means draws a line.
+
+175 720 m 175 700 l 300 800 400 720 v h S
+
+This adds another command, v, which draws a curved line. The first two coordinates are the control point which sets the bend of the line, the next two are where the line ends.
+
+175 720 m 175 700 l 300 800 400 600 v 100 650 50 75 re h S
+
+The re command draws a rectangle at coordinates 100 650 with a width and height of 50 and 75 respectively. You may notice that when this gets draw the rectangle is not physically connected to the path, it is however part of the same path and the painting operation you apply at the end (S) is applied to the whole lot.
+
+COLOR:
+
+0.9 0.5 0.0 rg 100 400 300 300 re f
+
+Will draw an orange box on the screen. The rg command set the colour space to DeviceRGB and describes the red/green/blue components (maximum 1.0 and minimum 0.0) of the colour used to fill the rectangle (If you use a capital RG it represents the stroke colour to use).

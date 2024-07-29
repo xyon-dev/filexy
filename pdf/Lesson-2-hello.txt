@@ -18,7 +18,25 @@ stream
 
 BT /F1 24 Tf 175 720 Td (Hello World!)Tj ET
   # BT = BT means Begin Text
-  # ET means End Text
+  # ET = means End Text
+  # tf = preceded by /F1 24; /F1 = font, 24 = size
+  # td = preceded by 175 720; units from left and bottom (coord system)
+
+  # In streams you can’t reference objects in the same way you do when 
+  # outside a stream (ie 10 0 R); you have to map /F1 to a object and 
+  # make that available to the /Resources dictionary.   
+  # This dictionary of resources is associated with a /Contents mapping 
+  # which points to your Stream object:
+  
+  # 3 0 obj<</Type /Page /Parent 2 0 R /Resources 4 0 R /MediaBox [0 0 500 800] /Contents 7 0 R>>
+  # /Resources 4 0 R :: points to 4 obj for resource data
+  # 4 0 obj<</Font <</F1 5 0 R>>>> :: font mapped to 5 obj by 4 obj 
+  # 5 0 obj<</Type /Font /Subtype /Type1 /BaseFont /Helvetica>>... :: 5 obj describes font 
+  # /Contents 7 0 R = points to the "stream" object
+endobj
+
+
+
 endstream
 endobj
 xref
